@@ -49,7 +49,7 @@ package com.codeorchestra{
 			var mstep : int  = 2;
 			var p : Point  = new Point(w, h);
 			
-			branches[0] = new com.codeorchestra.Branch(0, mstep, p, Math.PI / 2);
+			branches[0] = new Branch(0, mstep, p, Math.PI / 2);
 			
 			grow();
 			
@@ -59,15 +59,15 @@ package com.codeorchestra{
 		}
 		
 		private function grow () : void {
-			var branch : com.codeorchestra.Branch;
+			var branch : Branch;
 			var branchPoint : Point;
 			var nextSlot : int  = 1;
-			var leaf : com.codeorchestra.Leaf;
+			var leaf : Leaf;
 
 			var i : int  = 0;
 			var slots : int  = (Math.pow(2, generations + 1) >> 0) - 1;
 			for ( i = 0 ; i < slots ; i++ ) {
-				branch = branches[i] as com.codeorchestra.Branch;
+				branch = branches[i] as Branch;
 				if ( branch != null ) {
 					branch.draw();
 					addChild(branch);
@@ -87,10 +87,10 @@ package com.codeorchestra{
 		
 		private function clear () : void {
 			while ( branches && (branches.length > 0) ) {
-				(removeChild(branches.pop()) as com.codeorchestra.Branch).clear();
+				(removeChild(branches.pop()) as Branch).clear();
 			}
 			while ( leaves && (leaves.length > 0) ) {
-				(removeChild(leaves.pop()) as com.codeorchestra.Leaf).clear();
+				(removeChild(leaves.pop()) as Leaf).clear();
 			}
 		}
 	}
