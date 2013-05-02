@@ -1,0 +1,1 @@
+This is minko solar system example from https://github.com/aerys/minko-examples/ modified to allow you make planets spin differently, remove them or add them back as you please. To that end, please edit initializeSceneImpl() or enterFrameHandler() methods in SolarSystemExample class.
