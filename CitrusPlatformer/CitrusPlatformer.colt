@@ -1,6 +1,6 @@
 #Wed May 01 18:35:04 GMT+01:00 2013
 name=CitrusPlatformer
-libraryPaths=${project}/project/lib/CEV3-0-0-Starling-Box2D.swc\:
+libraryPaths=${project}/project/lib/CEV3-0-0-Starling-Box2D.swc
 targetPlayerVersion=11.5.0
 mainClass=${project}/project/src/Citrus.as
 maxLoopIterations=10000
@@ -10,4 +10,4 @@ target=SWF
 compilerOptions=-swf-version\=13
 outputFileName=CitrusPlatformer.swf
 useDefaultSDKConfiguration=true
-sourcePaths=${project}/project/src\:
+sourcePaths=${project}/project/src

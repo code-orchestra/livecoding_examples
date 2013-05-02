@@ -1,6 +1,6 @@
 #Tue Apr 30 18:08:49 GMT+01:00 2013
 name=SolarSystem
-libraryPaths=${project}/project/lib/minko.swc\:
+libraryPaths=${project}/project/lib/minko.swc
 targetPlayerVersion=11.5.0
 mainClass=${project}/project/src/aerys/minko/example/core/solarsystem/SolarSystemExample.as
 maxLoopIterations=10000
@@ -10,4 +10,4 @@ compilerOptions=-swf-version\=13
 target=SWF
 outputFileName=SolarSystem.swf
 useDefaultSDKConfiguration=true
-sourcePaths=${project}/project/src\:
+sourcePaths=${project}/project/src

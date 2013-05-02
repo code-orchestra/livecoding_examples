@@ -8,4 +8,4 @@ liveMethods=annotated
 target=SWF
 outputFileName=paint.swf
 useDefaultSDKConfiguration=true
-sourcePaths=${project}/project/src\:
+sourcePaths=${project}/project/src
