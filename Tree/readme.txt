@@ -1,0 +1,1 @@
+This is several generative art scripts put together to render blooming tree over the sunset in the mountains. Edit init() method in the Tree class to change its overall appearence, explore ohter classes to see how they react to your changes.
