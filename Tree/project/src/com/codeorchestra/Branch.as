@@ -3,7 +3,6 @@ package com.codeorchestra{
 	import flash.display.Shape;
 	import flash.geom.Point;
 	import flash.display.Graphics;
-	import codeOrchestra.actionScript.liveCoding.util.LiveCodingCodeFlowUtil;
 	[Live]
 	public class Branch extends Shape {
 		public static var ANGLE_VARIANCE : Number  = 0 ;
@@ -60,7 +59,6 @@ package com.codeorchestra{
 		}
 		
 		public function clear () : void {
-			LiveCodingCodeFlowUtil.checkRecursion(Math.random().toString());
 			graphics.clear();
 			
 			endPoint.x = startPoint.x;

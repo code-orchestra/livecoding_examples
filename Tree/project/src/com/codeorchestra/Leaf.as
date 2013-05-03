@@ -2,7 +2,6 @@ package com.codeorchestra{
 
 	import flash.display.Shape;
 	import flash.display.Graphics;
-	import codeOrchestra.actionScript.liveCoding.util.LiveCodingCodeFlowUtil;
 	[Live]
 	public class Leaf extends Shape {
 		private var _x : Number ;
@@ -38,7 +37,6 @@ package com.codeorchestra{
     
 		[LiveCodeUpdateListener(method="draw", priority="1")]
 		public function clear () : void {
-			LiveCodingCodeFlowUtil.checkRecursion(Math.random().toString());
 			graphics.clear();
 		}
 	}
