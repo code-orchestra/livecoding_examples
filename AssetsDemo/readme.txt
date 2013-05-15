@@ -1,0 +1,1 @@
+This is basic example of the code subscribing and reacting to asset updates.
