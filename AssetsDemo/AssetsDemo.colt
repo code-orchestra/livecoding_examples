@@ -1,17 +1,18 @@
-#Wed May 15 14:33:30 GMT+01:00 2013
+#Mon May 20 13:26:21 GMT+01:00 2013
 disconnectOnTimeout=true
 name=AssetsDemo
-libraryPaths=${project}/project/lib/Alternativa3D.swc\:
+libraryPaths=${project}/project/lib/Alternativa3D.swc
 excludeUnusedCode=true
-targetPlayerVersion=11.5.0
+outputPath=${project}/colt_output
 clearMessages=true
+targetPlayerVersion=11.5.0
 mainClass=${project}/project/src/AssetsDemo.as
 maxLoopIterations=10000
 flexSDKPath=${colt_home}/flex_sdk
 liveMethods=annotated
-compilerOptions=-swf-version\=13
 target=SWF
+compilerOptions=-swf-version\=13
 outputFileName=AssetsDemo.swf
 useDefaultSDKConfiguration=true
 compilationTimeoutValue=30
-sourcePaths=${project}/project/src\:
+sourcePaths=${project}/project/src

@@ -1,5 +1,6 @@
 package {
 	import alternativa.engine3d.core.*;
+	import alternativa.engine3d.lights.*;
 	import alternativa.engine3d.materials.*;
 	import alternativa.engine3d.primitives.*;
 	import alternativa.engine3d.resources.*;
@@ -9,12 +10,20 @@ package {
 	[SWF(width="1024",height="768")]
 	[Live]
 	public class AssetsDemo extends Sprite {
-		[Embed(source='rocket.png')]
-		private var Map:Class;
+		[Embed(source='diffuse.png')]
+		private var DiffuseMap:Class;
+
+		[Embed(source='normal.png')]
+		private var NormalMap:Class;
 		
-		[LiveAssetUpdateListener(field="Map")]
-		private function onMapUpdate() : void {
-			material.diffuseMap = new BitmapTextureResource ((new Map).bitmapData);
+		[LiveAssetUpdateListener(field="DiffuseMap")]
+		private function setDiffuseMap() : void {
+			material.diffuseMap = new BitmapTextureResource ((new DiffuseMap).bitmapData);
+		}
+		
+		[LiveAssetUpdateListener(field="NormalMap")]
+		private function setNormalMap() : void {
+			material.normalMap = new BitmapTextureResource ((new NormalMap).bitmapData);
 		}
 
 		public var stage3D:Stage3D;
@@ -35,9 +44,12 @@ package {
 			camera.y = -250; camera.rotationX = -1.57;
 			addChild (camera.view = new View (stage.stageWidth, stage.stageHeight));
 			camera.parent.addChild (box = new Box());
-			box.setMaterialToAllSurfaces(
-				material = new TextureMaterial (new BitmapTextureResource ((new Map).bitmapData))
-			);
+			box.setMaterialToAllSurfaces(material = new StandardMaterial());
+			
+			setDiffuseMap();
+			setNormalMap();
+			
+			camera.parent.addChild(new DirectionalLight(0xFFFFFF)).rotationX = -1.57;
 			addEventListener (Event.ENTER_FRAME, render);
 		}
 		public function render (e:Event):void {
