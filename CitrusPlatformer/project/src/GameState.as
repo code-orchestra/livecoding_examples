@@ -53,10 +53,10 @@ package {
     }
     [LiveCodeUpdateListener]
     private function test (  ) : void {
-      /*
+      /**/
       removeObjects([CitrusSprite, Platform]);
       createPlatforms();
-       */
+       /**/
       
       /*
       removeObjects([Hero]);
@@ -82,13 +82,14 @@ package {
       
       add(new Platform("p1", {x:874, y:170, width:300, height:95, view:createPlatformTexture(300, 95)}))
       
-      add(new MovingPlatform("moving", {x:220, y:600, width:200, height:95, view:createPlatformTexture(200, 95), startX:220, startY:600, endX:500, endY:170}))
+//      add(new MovingPlatform("moving", {x:500, y:170, width:200, height:95, view:createPlatformTexture(200, 95), startX:500, startY:170, endX:220, endY:400}))
+//      add(new MovingPlatform("moving", {x:500, y:170, width:200, height:95, view:createPlatformTexture(200, 95), startX:500, startY:170, endX:220, endY:600}))
     }
     private function createHero (  ) : void {
       add(new Hero("hero", {x:50, y:50, width:60, height:135, view:new AnimationSequence(new TextureAtlas(Texture.fromBitmap(hero), XML(new heroConfig())), ["walk", "duck", "idle", "jump", "hurt"], "idle"), group:1}))
     }
     private function createEnemy (  ) : void {
-      add(new Enemy("enemy", {x:900, y:660, width:46, height:68, leftBound:10, rightBound:1000, registration:"center", view:new AnimationSequence(new TextureAtlas(Texture.fromBitmap(enemy), XML(new enemyConfig())), ["walk", "die"], "walk"), group:1}))
+      //add(new Enemy("enemy", {x:900, y:660, width:46, height:68, leftBound:10, rightBound:1000, registration:"center", view:new AnimationSequence(new TextureAtlas(Texture.fromBitmap(enemy), XML(new enemyConfig())), ["walk", "die"], "walk"), group:1}))
     }
     private function createCoin (  ) : void {
       Coin(add(new Coin("muffin", {x:950, y:95, width:80, height:80, view:muffin, group:1}))).onBeginContact.add(onMuffinConsumed)
