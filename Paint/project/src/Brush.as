@@ -11,6 +11,9 @@ package {
       shape.graphics.clear();
       shape.graphics.beginFill(0x7f00);
       shape.graphics.drawCircle(x, y, 20);
+//      shape.graphics.drawCircle(x+20*Math.random(), y+20*Math.random(), 10);
+//      shape.graphics.beginFill(0);
+//      shape.graphics.drawCircle(x, y, 100);
       shape.graphics.endFill();
       
       canvas.draw(shape);
