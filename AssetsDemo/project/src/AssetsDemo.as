@@ -28,7 +28,7 @@ package {
 
 		public var stage3D:Stage3D;
 		public var camera:Camera3D;
-		public var material:TextureMaterial;
+		public var material:StandardMaterial;
 		public var box:Object3D;
 
 		public function AssetsDemo () {
