@@ -1,0 +1,26 @@
+<xml projectName='Balls' projectType='JS'>
+  <paths>
+    <sources-set>*.js, *.htm?</sources-set>
+    <excludes-set></excludes-set>
+    <reloads-set>*.htm?</reloads-set>
+  </paths>
+  <build>
+    <main-document>${project}/index.html</main-document>
+    <extract-script>true</extract-script>
+  </build>
+  <live>
+    <settings>
+      <clear-log>false</clear-log>
+      <disconnect>true</disconnect>
+    </settings>
+    <launch>
+      <launcher>DEFAULT</launcher>
+      <browser-path></browser-path>
+    </launch>
+    <live>
+      <live-type>annotated</live-type>
+      <paused>false</paused>
+      <max-loop>1000</max-loop>
+    </live>
+  </live>
+</xml>
