@@ -1,1 +1,1 @@
-This is basic example of the code subscribing and reacting to asset updates.
+This is basic example of the code subscribing and reacting to asset updates. Run the project, then edit and save **'diffuse.png'** or **'normal.png'** file in your image editor. Modified file will be loaded into running app automatically.
