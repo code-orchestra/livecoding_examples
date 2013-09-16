@@ -15,7 +15,7 @@
     </settings>
     <launch>
       <launcher>CONSOLE</launcher>
-      <browser-path>/usr/local/bin/node</browser-path>
+      <browser-path></browser-path>
       <console-value>/usr/local/bin/node test.js</console-value>
     </launch>
     <live>
