@@ -7,13 +7,13 @@ package {
 	import flash.display.*;
 	import flash.events.*;
 
-	[SWF(width="1024",height="768")]
+	[SWF(width="512",height="384")]
 	[Live]
 	public class AssetsDemo extends Sprite {
-		[Embed(source='diffuse.png')]
+		[Embed(source='textures-assets/diffuse.png')]
 		private var DiffuseMap:Class;
 
-		[Embed(source='normal.png')]
+		[Embed(source='textures-assets/normal.png')]
 		private var NormalMap:Class;
 		
 		[LiveAssetUpdateListener(field="DiffuseMap")]
