@@ -1,6 +1,6 @@
 <xml projectName='Balls' projectType='JS'>
   <paths>
-    <sources-set>*.js, *.htm?</sources-set>
+    <sources-set>*.js, *.htm*</sources-set>
     <excludes-set></excludes-set>
     <reloads-set>*.htm?</reloads-set>
   </paths>
