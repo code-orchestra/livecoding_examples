@@ -1,0 +1,291 @@
+<html xmlns:ng="http://angularjs.org" ng-app lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Countries</title>
+		<!-- This is based on http://jsfiddle.net/SAWsA/11/ (flag icons from http://www.famfamfam.com/lab/icons/flags/) -->
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet" />
+		<style>
+			body { padding: 10px; }
+			.right { text-align: right; }
+			/* prevent headers from breaking in small window, remove extra border */
+			th { white-space: nowrap; border-bottom-style: none !important; }
+			td.noborder { border-top-style: none !important; }
+			/* align search box with pagination */
+			.form-control { height: 36px; }
+			.input-group { margin-top: 20px; }
+			/* remove underlines from links in column headers */
+			th a:hover { text-decoration: none; }
+		</style>
+		<script src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://bootstrappaginator.org/lib/bootstrap-paginator.min.js"></script>
+		<!--
+			This demo is a mix of angular.js, jquery, bootstrap paginator and geognos api.
+			Loosely based on http://jsfiddle.net/SAWsA/11/ (flag icons from http://www.famfamfam.com/lab/icons/flags/)
+			
+			Try to change random stuff below, or search for the word "example"
+
+		  -->
+		<script>
+
+		function ctrlRead($scope, $filter) {
+			// init
+			$scope.sortingOrder = sortingOrder;
+			$scope.reverse = false;
+			$scope.filteredItems = [];
+			$scope.groupedItems = [];
+			$scope.itemsPerPage = 5;
+			$scope.pagedItems = [];
+			$scope.currentPage = 0;
+			$scope.items = [];
+			$scope.query = '';
+
+			var searchMatch = function (haystack, needle) {
+				if (!needle) {
+					return true;
+				}
+				//
+				// example:
+				// uncomment one of conditions below to require the needle to be at the starting position or to be case-sensitive
+				//
+				//return (haystack+'').toLowerCase().indexOf(needle.toLowerCase()) == 0;
+				//return (haystack+'').indexOf(needle) != -1;
+				return (haystack+'').toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+			};
+
+			// init the filtered items
+			$scope.search = function () {
+				$scope.filteredItems = $filter('filter')($scope.items, function (item) {
+					for(var attr in item) {
+						if (searchMatch(item[attr], $scope.query))
+								return true;
+					}
+					return false;
+				});
+				// take care of the sorting order
+				if ($scope.sortingOrder !== '') {
+					$scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+				}
+				
+				$scope.currentPage = 0;
+				
+				// now group by pages
+				$scope.groupToPages();
+			};
+			
+			$scope.showCurrentPage = function () {
+				$('#paginator').bootstrapPaginator('setOptions', { currentPage: $scope.currentPage + 1 });
+				$('#paginator').trigger('fixStyles');
+			};
+		
+			// calculate page in place
+			$scope.groupToPages = function () {
+				$scope.pagedItems = [];
+			
+				for (var i = 0; i < $scope.filteredItems.length; i++) {
+					if (i % $scope.itemsPerPage === 0) {
+						$scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
+					} else {
+						$scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+					}
+				}
+				
+				$('#paginator').bootstrapPaginator("setOptions", { totalPages: $scope.pagedItems.length });
+				$scope.showCurrentPage();
+				
+				// limit number of pages
+				if ($scope.pagedItems.length > $scope.maxPages) {
+					$scope.pagedItems.length = $scope.maxPages;
+					$scope.pagedItems.push([]);
+				}
+			};
+		
+			$scope.range = function (start, end) {
+				var ret = [];
+				if (!end) {
+					end = start;
+					start = 0;
+				}
+				for (var i = start; i < end; i++) {
+					ret.push(i);
+				}
+				return ret;
+			};
+		
+			$scope.prevPage = function () {
+				if ($scope.currentPage > 0) {
+					$scope.currentPage--; $scope.showCurrentPage();
+				}
+			};
+		
+			$scope.nextPage = function () {
+				if ($scope.currentPage < $scope.pagedItems.length - 1) {
+					$scope.currentPage++; $scope.showCurrentPage();
+				}
+			};
+		
+			$scope.setPage = function (n) {
+				console.log ("setting page "+ n);
+				$scope.currentPage = n;
+			};
+
+			// functions have been describe process the data for display
+			$scope.search();
+
+			// change sorting order
+			$scope.sort_by = function(newSortingOrder) {
+				if ($scope.sortingOrder == newSortingOrder)
+					$scope.reverse = !$scope.reverse;
+
+				$scope.sortingOrder = newSortingOrder;
+			};
+		};
+		
+		ctrlRead.$inject = ['$scope', '$filter'];
+		
+		// callback name for geognos jsonp data cannot be specified :S
+		var items = [];
+		function callback (data) {
+			var r = data.Results;
+			for (var cc in r) {
+				if (!r[cc].Capital) {
+					r[cc].Capital = {
+						TD: 0,
+						Name: "N/A"
+					}
+				}
+				var t = parseInt (r[cc].Capital.TD);
+				if (t > 0) {
+					t = "+" + t;
+				} else if (t == 0) {
+					t = "";
+				}
+				items.push ({
+					id : cc,
+					name : r[cc].Name,
+					
+					capitalName : r[cc].Capital.Name,
+					gmt : t,
+					
+					getDescription : function () {
+						//
+						// example:
+						// change this code to affect the description column appearance, e.g. add flag icon or wikipedia link
+						//
+						this.description =
+							//"<img src='flags/" + this.id + ".gif' style='max-width:16px' />&nbsp; " +
+							"Capital: " + this.capitalName + ", " +
+							"Time zone: GMT" + this.gmt + ", " +
+							//"More about <a href='http://en.wikipedia.org/wiki/" + escape(this.name) + "' target='wiki'>" + this.name + " on wikipedia</a> " +
+							":)";
+						return this.description;
+					},
+					
+					description : "",
+					field3 : r[cc].TelPref,
+					field4 : r[cc].CountryCodes.iso3,
+					field5 : r[cc].CountryCodes.isoN
+				});
+			}
+		}
+		
+		$(function () {
+			// set the data
+			var $scope = angular.element($("#ui")[0]).scope();
+			$scope.$apply(function(){
+				$scope.items = items;
+				$scope.search();
+			});
+			
+			// set the paginator up
+			var fixPaginatorStyles = function () {
+				// this fixes paginator styles for bootstrap v3
+				$('#paginator').removeClass('pagination');
+				$('#paginator ul').addClass('pagination pull-right');
+			};
+			
+	        var options = {
+				numberOfPages: 7,
+				shouldShowPage: function (type, page, current) {
+					switch (type) {
+						case "first": case "last": return false;
+						default: return true;
+					}
+				},
+				onPageChanged: function (e, oldPage, newPage) {
+					var $scope = angular.element($("#ui")[0]).scope();
+					$scope.$apply(function(){
+						$scope.setPage(newPage - 1);
+					});
+				},
+				itemTexts: function (type, page, current) {
+					//
+					// example:
+					// uncomment "page" case below to change page labels here
+					//
+					switch (type) {
+						case "prev": return "&laquo; Prev";
+						case "next": return "Next &raquo;";
+						//case "page": return "p." + page;
+						default: return page;
+					}
+				}
+	        }
+
+	        $('#paginator').bootstrapPaginator(options);
+			$('#paginator').bind('fixStyles', fixPaginatorStyles);
+			fixPaginatorStyles(); $('#paginator').click (fixPaginatorStyles);
+			
+		});
+		</script>
+		
+		<!--script src="http://www.geognos.com/api/en/countries/info/all.jsonp"></script-->
+		<script src="flags/all.jsonp"></script>
+		
+		</head>
+		<body>
+		<script type="text/javascript">
+			var sortingOrder = 'name';
+		</script>
+				
+			<div id="ui" ng-controller="ctrlRead">
+				<table class="table table-striped table-condensed table-hover">
+						<thead>
+							<tr>
+								<th class="id"><a ng-click="sort_by('id')">Id&nbsp;<i class="icon-sort"></i></a></th>
+								<th class="name"><a ng-click="sort_by('name')">Name&nbsp;<i class="icon-sort"></i></a></th>
+								<th class="description"><a ng-click="sort_by('description')">Description&nbsp;<i class="icon-sort"></i></a></th>
+								<th class="field3 right"><a ng-click="sort_by('field3')">Field 3&nbsp;<i class="icon-sort"></i></a></th>
+								<th class="field4 right"><a ng-click="sort_by('field4')">Field 4&nbsp;<i class="icon-sort"></i></a></th>
+								<th class="field5 right"><a ng-click="sort_by('field5')">Field 5&nbsp;<i class="icon-sort"></i></a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+								<td>{{item.id}}</td>
+								<td>{{item.name}}</td>
+								<td ng-bind-html-unsafe="item.getDescription()"></td>
+								<td class="right">{{item.field3}}</td>
+								<td class="right">{{item.field4}}</td>
+								<td class="right">{{item.field5}}</td>
+							</tr>
+						</tbody>
+				</table>
+				<table class="table table-condensed table-hover">
+					<tr>
+						<td class="noborder" width="50%">
+							<div class="input-group">
+							  <input type="text" ng-model="query" ng-change="search()" class="form-control" placeholder="Search"></input>
+							  <span class="input-group-addon icon-search"></span>
+							</div>
+						</td>
+						<td class="noborder" width="50%">
+							<div id="paginator"></div>
+						</td>						
+					</tr>
+				</table>
+				
+			</div>
+		</body>
+</html>
