@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Simple jQuery animation</title>
+	<style>
+	#wrap {
+	    margin-left:50%;
+	}
+	#thing {
+	    left: -20px;
+	    background-color: #777;
+	    position: relative;
+		width: 245px;
+	}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+	
+	//
+	// example:
+	// uncomment lines below to add opacity change into the animation,
+	// or change the animation speed
+	//
+	function animate (state) {
+	    var left = "+=200";
+//	    var opacity = 0.25;
+	    if (state) {
+	        left = "-=200";
+//	        opacity = 1;
+	    }
+	    $( "div#thing" ).animate({
+	        left: left,
+//	        opacity: opacity
+	    }, 1000, function () {
+	        animate (!state);
+	    });
+	}
+
+	$(animate);
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="thing">
+			<img src="http://learn.jquery.com/jquery-wp-content/themes/jquery/images/logo-jquery.png" />
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
