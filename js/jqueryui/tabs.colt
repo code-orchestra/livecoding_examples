@@ -1,0 +1,70 @@
+<xml projectName='tabs' projectType='JS'>
+  <paths>
+    <sources-set>**/*.js, -lib/*.js</sources-set>
+    <excludes-set>out/**, .git/**, .*/**, **/*bak___</excludes-set>
+    <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
+  </paths>
+  <build>
+    <main-document>${project}/tabs.html</main-document>
+    <extract-script>true</extract-script>
+  </build>
+  <live>
+    <settings>
+      <clear-log>false</clear-log>
+      <disconnect>true</disconnect>
+    </settings>
+    <launch>
+      <launcher>DEFAULT</launcher>
+      <browser-path></browser-path>
+      <console-value></console-value>
+    </launch>
+    <live>
+      <live-type>all</live-type>
+      <paused>false</paused>
+      <max-loop>10000</max-loop>
+    </live>
+  </live>
+  <production-build>
+    <output-path></output-path>
+    <files-paths>**/*.js, -lib/*.js</files-paths>
+    <require-js>
+      <used>false</used>
+      <build-profile></build-profile>
+    </require-js>
+    <combing-files>
+      <used>false</used>
+    </combing-files>
+    <gZip>
+      <used>false</used>
+      <files-paths>*.*</files-paths>
+    </gZip>
+    <jsdoc>
+      <used>false</used>
+      <files-paths>*.js</files-paths>
+      <output-path></output-path>
+    </jsdoc>
+    <jshint>
+      <used>false</used>
+      <files-paths>*.js</files-paths>
+    </jshint>
+    <minimizing-scripts>
+      <used>false</used>
+      <warning-level>default</warning-level>
+    </minimizing-scripts>
+    <props2js>
+      <used>false</used>
+      <property-file></property-file>
+      <type-value>js</type-value>
+    </props2js>
+    <s3>
+      <used>false</used>
+      <access-key></access-key>
+      <secret-key></secret-key>
+      <bucket-value></bucket-value>
+      <use-config>false</use-config>
+      <config-file></config-file>
+      <gzip-enabled>false</gzip-enabled>
+      <encryption-enabled>false</encryption-enabled>
+    </s3>
+  </production-build>
+</xml>
