@@ -1,7 +1,7 @@
 <xml projectName='tabs' projectType='JS'>
   <paths>
     <sources-set>**/*.js, -lib/*.js</sources-set>
-    <excludes-set>out/**, .git/**, .*/**, **/*bak___</excludes-set>
+    <excludes-set>out/**, .git/**, .*/**, **/*bak___, *.md, *.colt</excludes-set>
     <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
   </paths>
   <build>

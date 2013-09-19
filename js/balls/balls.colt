@@ -1,8 +1,8 @@
 <xml projectName='Balls' projectType='JS'>
   <paths>
     <sources-set>*.js, *.htm*</sources-set>
-    <excludes-set></excludes-set>
-    <reloads-set>*.htm?</reloads-set>
+    <excludes-set>out/**, .git/**, .*/**, **/*bak___, *.md, *.colt</excludes-set>
+    <reloads-set>*.htm*</reloads-set>
   </paths>
   <build>
     <main-document>${project}/index.html</main-document>

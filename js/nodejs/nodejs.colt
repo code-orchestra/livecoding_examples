@@ -1,7 +1,7 @@
 <xml projectName='nodejs' projectType='JS'>
   <paths>
     <sources-set>**/*.js</sources-set>
-    <excludes-set>out/**, .git/**, .*/**</excludes-set>
+    <excludes-set>out/**, .git/**, .*/**, **/*bak___, *.md, *.colt</excludes-set>
     <reloads-set></reloads-set>
   </paths>
   <build>
