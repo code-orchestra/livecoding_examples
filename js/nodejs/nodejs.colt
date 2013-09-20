@@ -14,8 +14,9 @@
       <disconnect>true</disconnect>
     </settings>
     <launch>
-      <launcher>CONSOLE</launcher>
+      <launcher>NODE_JS</launcher>
       <browser-path></browser-path>
+      <nodejs-path>/usr/local/bin/node</nodejs-path>
       <console-value>/usr/local/bin/node test.js</console-value>
     </launch>
     <live>
