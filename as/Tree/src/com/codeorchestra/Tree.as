@@ -7,7 +7,6 @@ package com.codeorchestra{
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.geom.Point;
-	import codeOrchestra.actionScript.logging.logUtil.LogUtil;
 
 	[SWF(width="1024", height="768", backgroundColor="#7fbfff")]
 	[Live]
