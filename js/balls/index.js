@@ -82,6 +82,12 @@ Nodes.prototype.Display = function() {
 	for (var i=0; i<this.n.length; i++){
 		this.n[i].Display();
 	}
+	
+	// http://code.google.com/p/android/issues/detail?id=35474
+	canvas.style.opacity=0.99;
+	setTimeout(function () {
+		canvas.style.opacity=1;
+	}, 0);
 };
 
 var width = window.innerWidth;
@@ -93,7 +99,7 @@ canvas.height = height;
 
 var context = canvas.getContext( '2d' );
 
-var ns = new Nodes(250);
+var ns = new Nodes(100);
 
 setInterval( function () {
     context.clearRect(0,0,canvas.width,canvas.height);
