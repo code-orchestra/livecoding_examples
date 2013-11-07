@@ -85,7 +85,7 @@ Nodes.prototype.Display = function() {
 	
 	// http://code.google.com/p/android/issues/detail?id=35474
 	canvas.style.opacity=0.99;
-	setTimeout(function () {
+	setTimeout(/* @disable-livecoding */ function () {
 		canvas.style.opacity=1;
 	}, 0);
 };
