@@ -12,15 +12,14 @@ function Node () {
 }
 
 Node.prototype.Display = function() {
-	function r ( node ) {
-		//
-		// example:
-		// edit this formula to change your balls' size
-		//
-		return node.radius * 0.75;
-	}
+	//
+	// example:
+	// edit this parameter to change your balls' size
+	//
+	var scale = 0.75; //@edit (min=0.3; max = 3;)
+	
     context.beginPath();
-    context.arc(this.left, this.top, r( this ), 0, Math.PI*2, false);
+    context.arc(this.left, this.top, this.radius * scale, 0, Math.PI * 2, false);
 	
 	//
 	// example:
