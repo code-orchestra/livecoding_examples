@@ -6,7 +6,24 @@
   </paths>
   <build>
     <main-document>${project}/test.js</main-document>
-    <extract-script>true</extract-script>
+    <use-custom-output-path>false</use-custom-output-path>
+    <out-path></out-path>
+    <precompile>
+      <is-new>true</is-new>
+      <type-script>false</type-script>
+      <use-less>false</use-less>
+      <use-sass>false</use-sass>
+      <coffee-script>false</coffee-script>
+    </precompile>
+    <offline-cms>
+      <integrate-mercury>false</integrate-mercury>
+      <run-mercury>true</run-mercury>
+    </offline-cms>
+    <security>
+      <use-inspectable>true</use-inspectable>
+      <can-edit></can-edit>
+      <can-view>*</can-view>
+    </security>
   </build>
   <live>
     <settings>
@@ -14,14 +31,16 @@
       <disconnect>true</disconnect>
     </settings>
     <launch>
-      <launcher>CONSOLE</launcher>
+      <launcher>NODE_JS</launcher>
       <browser-path></browser-path>
+      <nodejs-path>/usr/local/bin/node</nodejs-path>
       <console-value>/usr/local/bin/node test.js</console-value>
     </launch>
     <live>
-      <live-type>all</live-type>
       <paused>false</paused>
       <max-loop>10000</max-loop>
+      <live-html-edit>true</live-html-edit>
+      <disable-in-minified>true</disable-in-minified>
     </live>
   </live>
   <production-build>
