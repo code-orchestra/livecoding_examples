@@ -12,15 +12,14 @@ function Node () {
 }
 
 Node.prototype.Display = function() {
-	function r ( node ) {
-		//
-		// example:
-		// edit this formula to change your balls' size
-		//
-		return node.radius * 0.75;
-	}
+	//
+	// example:
+	// edit this parameter to change your balls' size
+	//
+	var scale = 0.75; //@edit (min=0.3; max = 3;)
+	
     context.beginPath();
-    context.arc(this.left, this.top, r( this ), 0, Math.PI*2, false);
+    context.arc(this.left, this.top, this.radius * scale, 0, Math.PI * 2, false);
 	
 	//
 	// example:
@@ -82,6 +81,12 @@ Nodes.prototype.Display = function() {
 	for (var i=0; i<this.n.length; i++){
 		this.n[i].Display();
 	}
+	
+	// http://code.google.com/p/android/issues/detail?id=35474
+	canvas.style.opacity=0.99;
+	setTimeout(/* @disable-livecoding */ function () {
+		canvas.style.opacity=1;
+	}, 0);
 };
 
 var width = window.innerWidth;
@@ -93,7 +98,7 @@ canvas.height = height;
 
 var context = canvas.getContext( '2d' );
 
-var ns = new Nodes(250);
+var ns = new Nodes(100);
 
 setInterval( function () {
     context.clearRect(0,0,canvas.width,canvas.height);
