@@ -1,11 +1,10 @@
-<xml projectName='nodejs' projectType='JS'>
+<xml projectName='nodejs' projectType='JS' projectPort='9095'>
   <paths>
-    <sources-set>**/*.js</sources-set>
     <excludes-set>out/**, .git/**, .*/**, **/*bak___, *.md, *.colt</excludes-set>
-    <reloads-set></reloads-set>
+    <sources-url></sources-url>
   </paths>
   <build>
-    <main-document>${project}/test.js</main-document>
+    <main-document>\test.js</main-document>
     <use-custom-output-path>false</use-custom-output-path>
     <out-path></out-path>
     <precompile>
@@ -28,23 +27,26 @@
   <live>
     <settings>
       <clear-log>false</clear-log>
-      <disconnect>true</disconnect>
+      <disconnect>false</disconnect>
     </settings>
     <launch>
       <launcher>NODE_JS</launcher>
       <browser-path></browser-path>
-      <nodejs-path>/usr/local/bin/node</nodejs-path>
+      <nodejs-path></nodejs-path>
+      <node-webkit-path></node-webkit-path>
+      <copy-node-webkit-launcher>false</copy-node-webkit-launcher>
       <console-value>/usr/local/bin/node test.js</console-value>
     </launch>
     <live>
       <paused>false</paused>
       <max-loop>10000</max-loop>
-      <live-html-edit>true</live-html-edit>
+      <simple-reload>false</simple-reload>
       <disable-in-minified>true</disable-in-minified>
+      <enable-debugger>false</enable-debugger>
     </live>
   </live>
   <production-build>
-    <output-path>${project}/out/production</output-path>
+    <output-path>\out\production</output-path>
     <files-paths>**/*.js, -lib/*.js</files-paths>
     <require-js>
       <used>false</used>
@@ -60,7 +62,7 @@
     <jsdoc>
       <used>false</used>
       <files-paths>*.js</files-paths>
-      <output-path>${project}/out/production/jsDocs</output-path>
+      <output-path>\out\production\jsDocs</output-path>
     </jsdoc>
     <jshint>
       <used>false</used>

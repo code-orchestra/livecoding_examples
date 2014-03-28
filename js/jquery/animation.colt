@@ -1,27 +1,48 @@
-<xml projectName='animation' projectType='JS'>
+<xml projectName='animation' projectType='JS' projectPort='9093'>
   <paths>
-    <sources-set>**/*.js, -lib/*.js</sources-set>
     <excludes-set>out/**, .git/**, .*/**, **/*bak___, *.md, *.colt</excludes-set>
-    <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
+    <sources-url></sources-url>
   </paths>
   <build>
-    <main-document>${project}/animation.html</main-document>
-    <extract-script>true</extract-script>
+    <main-document>\animation.html</main-document>
+    <use-custom-output-path>false</use-custom-output-path>
+    <out-path></out-path>
+    <precompile>
+      <is-new>true</is-new>
+      <type-script>false</type-script>
+      <use-less>false</use-less>
+      <use-sass>false</use-sass>
+      <coffee-script>false</coffee-script>
+    </precompile>
+    <offline-cms>
+      <integrate-mercury>false</integrate-mercury>
+      <run-mercury>true</run-mercury>
+    </offline-cms>
+    <security>
+      <use-inspectable>true</use-inspectable>
+      <can-edit></can-edit>
+      <can-view>*</can-view>
+    </security>
   </build>
   <live>
     <settings>
       <clear-log>false</clear-log>
-      <disconnect>true</disconnect>
+      <disconnect>false</disconnect>
     </settings>
     <launch>
-      <launcher>DEFAULT</launcher>
+      <launcher>BROWSER</launcher>
       <browser-path></browser-path>
+      <nodejs-path></nodejs-path>
+      <node-webkit-path></node-webkit-path>
+      <copy-node-webkit-launcher>false</copy-node-webkit-launcher>
       <console-value></console-value>
     </launch>
     <live>
-      <live-type>all</live-type>
       <paused>false</paused>
       <max-loop>10000</max-loop>
+      <simple-reload>false</simple-reload>
+      <disable-in-minified>true</disable-in-minified>
+      <enable-debugger>false</enable-debugger>
     </live>
   </live>
   <production-build>
