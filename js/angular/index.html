@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Test</title>
+	<script src="angular.js"></script>
+	<style>
+	
+		.colt-recompiled{
+		    border: 1px solid red;
+		    margin: -1px;
+		    /*background-color: #ccc;*/
+		    box-shadow: 0 0 0 2px red;
+		}
+
+		.colt-html-update{
+		    /*border: 1px solid #ccc;*/
+		    /*background-color: #ccc;*/
+		    /*margin: -1px;*/
+		    box-shadow: 0 0 0 2px #ccc;
+		}
+
+	</style>
+</head>
+<body ng-app ng-init="data = ['world','colt','angular']">
+	<ul>
+		<!-- try to modify 'p' tag -->
+		<li ng-repeat="item in data"><p>hello {{item}}!</p></li>
+	</ul>
+</body>
+</html>
